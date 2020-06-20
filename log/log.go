@@ -12,6 +12,7 @@ var logUrl string
 type H = gout.H
 
 func base(logLevel string, jsonData H)  {
+	Init()
 	err := gout.
 		// 设置POST方法和url
 		POST(logUrl).
@@ -37,7 +38,7 @@ func SendError(jsonData H)  {
 	base("error", jsonData)
 }
 
-func init()  {
+func Init()  {
 	logUrl = os.Getenv("UBT_URL")
 	if logUrl == "" {
 		log.Fatal("[ubt-go]请在环境变量中提供日志url, 环境变量字段名: UBT_URL")
